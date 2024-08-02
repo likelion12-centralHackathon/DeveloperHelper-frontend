@@ -1,0 +1,88 @@
+    .login-page {
+    position: relative;
+    background-color: #fff;
+  }
+
+  .login-container {
+    position: absolute;
+    top: 150px;
+    left: 50%; 
+    transform: translateX(-50%); 
+  }
+  .logo-setting {
+    display: flex;
+    flex-direction: row;
+  }
+ 
+  .logoName {
+    color: #5E7DEC;
+    font-size: 44px; 
+    font-weight: 700; 
+    margin: 0;
+  }
+  
+  .span {
+    font-size: 36px;
+    font-weight: 500;
+  }
+  
+  .ment {
+    color: #5E7DEC;
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 100px;
+  }
+  
+  .mainIcon-logo {
+    width: 150px; 
+    height: auto; 
+    position:absolute;
+    top: -70px;
+    left: 280px;
+  }
+  
+  /* 버튼 스타일 */
+  .kakao-login-button, .google-login-button {
+    width : 600px;
+    height: 102px;
+    display: flex;
+    border: none; /* 버튼 테두리 제거 */
+    border-radius: 12px; /* 버튼 모서리 둥글게 */
+    padding: 10px 20px; /* 버튼 패딩 */
+    margin: 38px 0; /* 버튼 간격 */
+    cursor: pointer; 
+  }
+
+  .kakao-login-button {
+    padding: 0px 28px;
+    align-items: center;
+    background-color: #FEE500;
+    font-size : 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%
+  }
+  .google-login-button {
+    padding: 0px 28px;
+    align-items: center;
+    background-color: #fff;
+    font-size : 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    border: 2px solid #DADCE0;
+
+  }
+  
+  .kakao-login-button:hover,.google-login-button:hover{
+    opacity: 0.8;
+  }
+  
+  .kakao-login-button img, .google-login-button img {
+    margin-left: 164px;
+    width: 36px; /* 아이콘 크기 조정 (필요에 따라 변경) */
+    height: 36px; /* 비율 유지 */
+    margin-right: 16px; /* 아이콘과 텍스트 간격 */
+  }
+  
+  

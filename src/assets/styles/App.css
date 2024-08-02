@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+@font-face {
+  font-family: 'BMHANNAPro';
+  src: url('../font/BMHANNAProOTF.otf'),
+       url('../font/BMHANNAPro.ttf'),
+       url('../font/bmhannapro-webfont.woff'),
+       url('../font/bmhannapro-webfont.woff2');
+  font-weight: normal;
+  font-style: normal;
+  }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.content-wrap {
+  flex: 1; 
+  padding: 20px; 
+}
+
+
