@@ -1,0 +1,182 @@
+.mypage-container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+    gap: 120px;
+}
+
+.calendar-container {
+    margin-top: 110px;
+    margin-bottom: 20px;
+    width: 520px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 33.214px;
+    border: 1.661px solid rgba(0, 0, 0, 0.50);
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.react-calendar {
+    width: 100%;
+    height: 522px;
+    border: none;
+    border-radius: 33.214px;
+    font-family: 'Poppins';
+    font-size: 30px;
+    padding: 50px;
+    margin :0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    /*justify-content: flex-end; */
+    margin-bottom: 10px;
+
+}
+
+.react-calendar__navigation__label {
+    width: 300px;
+    flex: 1; /* 년월 텍스트가 가능한 많은 공간을 차지하도록 */
+    text-align: left; /* 년월 텍스트를 왼쪽으로 정렬 */
+    font-size: 24px; /* 년월 글자 크기 조정 */
+    font-weight: bold; /* 년월 글자 두께 조정 */
+}
+.react-calendar__navigation__prev-button {
+    width: 50px;
+    order: 1; /* 이전 버튼 위치 조정 */
+  }
+  
+  .react-calendar__navigation__next-button {
+    order: 2; /* 다음 버튼 위치 조정 */
+  }
+.react-calendar__month-view__weekdays abbr {
+    text-decoration: none;
+    color: rgba(60, 60, 67, 0.60);
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 46.843px; /* 234.217% */
+  }
+ /* 년/월 상단 네비게이션 칸 크기 줄이기 */
+ .react-calendar__navigation__label {
+    flex-grow: 2!important;
+  }
+.react-calendar__tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-sizing: border-box; /* 패딩을 포함하여 크기 조정 */
+        padding: 13px 25px;
+
+}
+
+.react-calendar__month-view__months .react-calendar__tile {
+    flex: 0 0 14%;
+    padding: 10px; /* 월 선택 모드에서 타일의 패딩 조정 */
+    font-size: 10px;
+    border: 5px;
+}
+
+
+.react-calendar__tile--now {
+    background: #0a74da;
+    color: white;
+}
+
+.react-calendar__tile--active {
+    background: #ffa500;
+    color: white;
+}
+
+.react-calendar__tile:hover {
+    background: #ddd;
+}
+.progressTitle {
+    color: #5E7DEC;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 133.8%; /* 48.168px */
+}
+.progressTitle-name {
+    font-weight: 700;
+}
+.progress-summary {
+    margin-top: 100px;
+    width: 500px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    border: 1px solid #5E7DEC;
+    background: #FFF;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 36px;
+}
+.progress-summary-content h3 {
+    color: #5E7DEC;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 133.8%; /* 37.464px */
+}
+.progress-summary-content p {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 133.8%; /* 26.76px */
+    margin-bottom: 30px;
+}
+.progress-stretchCycle{
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.progress-cycleNum {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #E9EBF8;
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+}
+.progress-bodypart-container {
+    display: flex;
+    gap: 10px;
+}
+.progress-bodypart {
+    border-radius: 10px;
+    padding: 5px 24px;
+    background: #F3F3F3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; /* 24.084px */
+}

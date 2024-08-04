@@ -1,0 +1,86 @@
+.additional-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: auto;
+    margin: 50px auto 135px auto;
+}
+
+.additional-info-container h2 {
+    color: #391800;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.additional-info-container form div {
+    margin-bottom: 15px;
+}
+
+.additional-info-container label {
+    display: block;
+    margin-bottom: 15px;
+    color: #4F4F4F;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.additional-info-container input[type="text"],
+.additional-info-container input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #4F4F4F;;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.gender-container{
+    display: flex;
+    flex-direction: row;
+    gap: 45px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+.gender-container .gender {
+    color: #000;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    margin: 50px 0px 400px 0px; /* Ensure this margin setting to center the button */
+}
+.additional-info-container button {
+    border-radius: 15px;
+    background: #5E7DEC;
+    height: 73px;
+    padding: 0 60px;
+    flex-shrink: 0;
+    border: none;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 73px; /* 37.464px */
+}
+
+.additional-info-container button:hover {
+    background-color: #357ae8;
+}

@@ -1,0 +1,95 @@
+.challengeDetial-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.challengeDetail-content {
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position:relative;
+}
+.challengeDetail-card-container {
+    width: 294px;
+    height: 306px;
+    flex-shrink: 0;
+    position:relative;
+    border-radius: 20px;
+    background: linear-gradient(6deg, rgba(228, 204, 255, 0.25) -31.45%, #F6F6F6 75.5%);
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 78px auto 83px auto;
+}
+.challengeDetail-content h2 {
+    max-width: 500px;
+    color: #5E7DEC;
+    text-align: center;
+    font-family: "BMHANNAPro";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; /* 48.168px */
+    margin: 45px auto 0 auto;
+}
+.challengeDetail-person {
+    position:absolute;
+    top:21px;
+    left:30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:5px;
+}
+.challengeDetail-peopleNum {
+    color: #70747E;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.challengeDetail-icon-container{
+    margin-top: 20px;
+    width: 170px; /* 원하는 div의 너비 */
+    height: 170px; /* 원하는 div의 높이 */
+    display: flex; /* 중앙 정렬을 위한 flex 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    overflow: hidden; /* 이미지가 넘칠 경우 숨김 */
+}
+.challengeDetail-icon-container img {
+    max-width: 100%; /* div 너비에 맞게 조정 */
+    max-height: 100%; /* div 높이에 맞게 조정 */
+    width: auto; /* 이미지의 너비 자동 조정 */
+    height: auto;
+}
+.challengeDetail-contentment {
+    margin: 0 auto;
+    width: 630px;
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; /* 32.112px */
+}
+.joinBtn {
+    margin:90px auto 110px auto;
+    border:none;
+    width: 313px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #5E7DEC;
+    color: #FFF;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+    line-height: 64px;
+    
+}

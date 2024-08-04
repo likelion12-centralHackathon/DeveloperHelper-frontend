@@ -1,0 +1,154 @@
+.runningTimer {
+    display: flex;
+    justify-content: center;
+}
+.runningTimer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.runningTimer-container h2 {
+    margin: 50px 0 35px 0;
+    color: #5E7DEC;
+    text-align: center;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 170%; /* 48.168px */
+}
+.userName {
+    font-weight: 700;
+}
+
+.runningTimer-container p {
+    color: #212C53;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 133.8%;
+    margin-bottom: 35px;
+}
+.timeInterval {
+    color: #5E7DEC;
+    font-weight: 700;
+}
+.stopwatch-container {
+    width: 542px;
+    height:auto;
+    position: relative;
+    margin-bottom: 70px;
+}
+.stopwatch-container img {
+    width: 100%;
+    height:auto;
+
+}
+.stopwatch {
+    position: absolute;
+    top: 170px;
+    left: 95px;
+    font-family: 'BMHANNAPro';
+    color: #FFF;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; /* 120.42px */
+}
+
+.stopwatchBtn-container {
+    position:absolute;
+    top: 300px;
+    left: 130px;
+    display: flex;
+    gap: 20px;
+}
+.connecting {
+    color: #FFF;
+    font-size: 65px;
+    font-weight: 200;
+}
+.stopwatchBtn-container button{
+    width: 80px;
+    height: 76px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stopwatchBtn-container button div {
+    width:61px;
+    height:58px;
+    border-radius: 50%;
+    border: 1px solid;
+    color: #FFF;
+    font-family: "BMHANNAPro";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+}
+.endBtn {
+    background-color: rgba(255, 255, 255, 0.50);
+}
+.stopBtn {
+    background-color: rgba(255, 164, 164, 0.50);
+}
+.startBtn {
+    background-color: rgba(49, 49, 49, 0.50);
+}
+.endBtn-design {
+    background-color: rgba(174, 190, 245, 0.50);
+}
+.stopBtn-design {
+    background-color: rgba(255, 164, 164, 0.25);
+}
+.startBtn-design {
+    background-color: rgba(0, 0, 0, 0.20);
+}
+
+.bodyPartHistory-container {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 160px;
+}
+.bodyPartHistory {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+}
+.historyNum {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    background-color:  #C7D3FB;
+    color: #000;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 24.084px */
+}
+.historyPart {
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 133.8%; /* 24.084px */
+}
+.dot {
+    line-height: 1.0;
+    margin: 10px 0;
+    padding: 0;
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+}

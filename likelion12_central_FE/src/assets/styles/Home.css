@@ -1,0 +1,217 @@
+
+.home {
+    display: flex;
+    justify-content: center;
+}
+.home-container {
+    width: 950px;
+}
+
+.home-mainIcon {
+    width:300px;
+    height: auto;
+    position:absolute;
+    left: 520px;
+    top: 10px;
+}
+.home-header {
+    position: relative;
+}
+.home-header-content p {
+    color: #5E7DEC;
+    margin-bottom: 0;
+    margin-top: 90px;
+    font-family: "BMHANNAPro";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; 
+}
+.home-header-content {
+    display: flex;
+    flex-direction: column;
+}
+.home-header-content h2 {
+    margin: 10px 0px 50px 0px;
+    color: #391800;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.today-challenge-ment {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.today-challenge-ment p {
+    color: #391800;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 16px;
+}
+.today-challenge-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 63px;
+}
+.today-challenge-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:22px 20px;
+    width: 294px;
+    height: 142px;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    margin-right: 20px;
+    cursor: pointer;
+}
+.today-challenge-icon-container {
+    width: 97px;
+    height: 97px;
+    border-radius: 50%;
+    background-color: rgba(94, 125, 236, 0.20);
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.today-challenge-icon {
+    width: 60px;
+    height:60px;
+    display: flex; /* 중앙 정렬을 위한 flex 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    overflow: hidden;
+}
+.today-challenge-icon img {
+    max-width: 100%; /* div 너비에 맞게 조정 */
+    max-height: 100%; /* div 높이에 맞게 조정 */
+    width: auto; /* 이미지의 너비 자동 조정 */
+    height: auto; 
+    
+}
+.today-challenge-name {
+    width:147px;
+    color: #4F4F4F;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.timer-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 46px;
+    width:960px;
+    height:245px;
+    border-radius: 10px 10px 0px 10px;
+    background: #5E7DEC;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+}
+.timer-sample {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px 0px 0px 10px;
+    padding: 16px 18px;
+    margin:0px;
+}
+.timer-sample-img {
+    width: 370px;
+    height: auto;
+    flex-shrink: 0;
+    box-shadow: 0px 4px 16px 0px #CDD7F9;
+    margin: 0px 10px;
+}
+
+.timer-ment p {
+    color: #FFF;
+    font-size: 28px;
+    font-style: normal;
+    line-height: normal;
+    margin-left: 40px;
+}
+
+.timer-sub-ment {
+    margin-top: 0px;
+}
+
+.timer-main-ment {
+    font-weight: 700;
+    margin: 50px 0 16px 0;
+}
+
+.timer-button {
+    position: absolute;
+    right: 28px;
+    bottom: 20px;
+    width:203px;
+    height:49px;
+    border: none;
+    border-radius: 40px 60px 7px 40px;
+    background: rgba(233, 235, 248, 0.20);
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    color: #FFF;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+.timer-button img {
+    margin-left: 5px;
+}
+.additional-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 46px;
+    width:960px;
+    height:245px;
+    border-radius: 10px 10px 0px 10px;
+    background: rgba(94, 125, 236, 0.80);
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+}
+.additional-sample {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    background-color: #fff;
+    border-radius: 10px 0px 0px 10px;
+    padding: 14px 0px;
+    margin:0px;   
+}
+.additional-sample img {
+    box-shadow: 0px 4px 16px 0px #CDD7F9;
+    margin:0px 10px;
+    width: 263px;
+    height: auto;
+}
+.additional-ment p {
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+    margin-left: 30px;
+}
+.additional-main-ment {
+    margin-top: 50px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+.additional-sub-ment{
+    margin-top: 0;
+}

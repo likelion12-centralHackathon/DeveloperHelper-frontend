@@ -1,0 +1,78 @@
+.donechallenge-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.title {
+    color: #5E7DEC;
+    text-align: center;
+    font-family: "BMHANNAPro";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; /* 48.168px */
+}
+.doneChallenge-section {
+    width:1035px;
+    margin: 0 auto;
+    position: relative;
+}
+.section-title {
+    color: #391800;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.showDoneChallenge-container {
+    width:1035px;
+    margin: 0 0 53px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 31px;
+}
+.showDoneChallenge {
+    width: 294px;
+    height: 136px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: rgba(217, 217, 217, 0.20);
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.showDoneChallenge-icon-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.showDoneChallenge-icon {
+    width: 65px;
+    height:65px;
+    display: flex; /* 중앙 정렬을 위한 flex 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    overflow: hidden;
+}
+.showDoneChallenge-icon img {
+    max-width: 100%; /* div 너비에 맞게 조정 */
+    max-height: 100%; /* div 높이에 맞게 조정 */
+    width: auto; /* 이미지의 너비 자동 조정 */
+    height: auto; 
+    
+}
+.showDoneChallenge-name {
+    color:#000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
