@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../assets/styles/TimerRunning.css';
 import StopwatchModal from '../components/StopwatchModal.js';
 import timerBg from '../assets/img/timerBtn.svg';
 
 function TimerRunning() {
-    const [isActive, setIsActive] = useState(true);  // 시작할 때 스톱워치가 자동으로 작동하도록 true로 설정
-    const [isPaused, setIsPaused] = useState(false); // 시작할 때 일시정지가 아니도록 false로 설정
+    const [isActive, setIsActive] = useState(true);
+    const [isPaused, setIsPaused] = useState(false);
     const [time, setTime] = useState(0);
+    const [nickname, setNickname] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         let interval = null;
 
-        // isActive가 true이고, isPaused가 false이면 타이머 작동
         if (isActive && !isPaused) {
             interval = setInterval(() => {
                 setTime((prevTime) => prevTime + 10);
@@ -23,24 +26,72 @@ function TimerRunning() {
         return () => clearInterval(interval);
     }, [isActive, isPaused]);
 
+    useEffect(() => {
+        const fetchNickname = async () => {
+            try {
+                const accessToken = localStorage.getItem('accessToken');
+                const userId = localStorage.getItem('userId');
+                console.log('Access Token:', accessToken);
+                console.log('User ID:', userId);
+
+                const response = await axios.get(`http://localhost:8080/api/v1/users/info/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                console.log('Response:', response.data);
+                setNickname(response.data.data.nickname);
+            } catch (error) {
+                if (error.response && error.response.status === 403) {
+                    try {
+                        const refreshToken = localStorage.getItem('refreshToken');
+                        const refreshResponse = await axios.post('http://localhost:8080/api/v1/users/refresh', {}, {
+                            headers: {
+                                'Authorization': `Bearer ${refreshToken}`
+                            }
+                        });
+                        const newAccessToken = refreshResponse.data.data;
+                        localStorage.setItem('accessToken', newAccessToken);
+                        const userId = localStorage.getItem('userId');
+                        const retryResponse = await axios.get(`http://localhost:8080/api/v1/users/info/${userId}`, {
+                            headers: {
+                                'Authorization': `Bearer ${newAccessToken}`
+                            }
+                        });
+                        console.log('Retry Response:', retryResponse.data);
+                        setNickname(retryResponse.data.data.nickname);
+                    } catch (refreshError) {
+                        console.error('리프레시 토큰 갱신 실패:', refreshError);
+                        alert('로그인이 필요합니다.');
+                        navigate('/login');
+                    }
+                } else {
+                    console.error('사용자 정보를 불러오는 데 실패했습니다:', error);
+                }
+            }
+        };
+
+        fetchNickname();
+    }, [navigate]);
+
     const handleStart = () => {
-        setIsActive(true);   // 시작 버튼을 누르면 타이머 활성화
-        setIsPaused(false);  // 일시정지 해제
+        setIsActive(true);
+        setIsPaused(false);
     };
 
     const handlePause = () => {
-        setIsPaused(true);  // 정지 버튼을 누르면 타이머 일시정지
+        setIsPaused(true);
     };
 
     const handleEnd = () => {
-        setIsActive(false);  // 타이머 비활성화
-        setTime(0);          // 시간 초기화
+        setIsActive(false);
+        setTime(0);
     };
 
     return (
         <div className='runningTimer'>
             <div className='runningTimer-container'>
-                <h2><span className='userName'>김멋사 개발자</span> 님의<br />건강한 개발을 응원합니다.</h2>
+                <h2><span className='userName'>{nickname}</span> 님의<br />건강한 개발을 응원합니다.</h2>
                 <p><span className="timeInterval">1시간 30분</span>마다 설정한 신체부위별 스트레칭 시작!</p>
                 <div className='stopwatch-container'>
                     <img src={timerBg} alt='timer bg'></img>
@@ -80,3 +131,8 @@ function TimerRunning() {
 }
 
 export default TimerRunning;
+
+
+
+
+

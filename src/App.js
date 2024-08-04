@@ -12,7 +12,9 @@ import Stretching from './pages/Stretching';
 import Mypage from './pages/Mypage';
 import DoneChallenge from './pages/DoneChallenge';
 import ChallengeDetail from './pages/ChallengeDetail';
+import KakaoAuth from './components/KakaoAuth';
 import './assets/styles/App.css'; 
+import AdditionalInfo from './pages/AdditionalInfo';
 
 function App() {
   return (
@@ -21,7 +23,6 @@ function App() {
         <NavBar />
         <div className="content-wrap">
           <Routes>
-            {/* 초기 경로를 로그인 페이지로 리다이렉트 */}
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
@@ -31,8 +32,11 @@ function App() {
             <Route path="/stretching" element={<Stretching />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/timer-running" element={<TimerRunning />} />
-            <Route path="/done-challenge" element={<DoneChallenge/>} />
-            <Route path='/challenge-detail' element={<ChallengeDetail/>} />
+            <Route path="/done-challenge" element={<DoneChallenge />} />
+            <Route path="/challenge-detail" element={<ChallengeDetail />} />
+            {/* 카카오 인증 처리 경로 */}
+            <Route path="/api/v1/users/login/kakao" element={<KakaoAuth />} />
+            <Route path="/additional-info" element={<AdditionalInfo />} />
           </Routes>
         </div>
         <Footer />
@@ -42,4 +46,6 @@ function App() {
 }
 
 export default App;
+
+
 
