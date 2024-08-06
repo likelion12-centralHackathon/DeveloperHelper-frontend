@@ -1,0 +1,50 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: seohyun/developerhelper
+          stage: main
+          yaml: |
+            name: developerhelper-frontend
+            app: web
+            options:
+              nodeversion: "20"
+              spa: true
+              buildenv:
+                - name: APIKEY
+                  secret: APIKEY
+                - name: AUTHDOMAIN
+                  secret: AUTHDOMAIN
+                - name: PROJECTID
+                  secret: PROJECTID
+                - name: STORAGEBUCKET
+                  secret: STORAGEBUCKET
+                - name: SENDERID
+                  secret: SENDERID
+                - name: APPID
+                  secret: APPID
+                - name: MEASUREMENTID
+                  secret: MEASUREMENTID
+                - name: VAKIDKEY
+                  secret: VAKIDKEY
+              rewrites: []
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
