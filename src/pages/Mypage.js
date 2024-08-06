@@ -165,7 +165,14 @@ function Mypage() {
             }
         ]
     };
-
+    // 새로운 코드를 추가하여 stretchingTimes 변수를 정의하고 사용합니다.
+    const stretchingTimes = {
+        eye: 0,
+        neck: 0,
+        waist: 0,
+        leg: 0,
+        etc: 0
+    };
     useEffect(() => {
         console.log('Updated pie chart data:', pieChartData); // 추가된 로그
     }, [stretchingData]);
