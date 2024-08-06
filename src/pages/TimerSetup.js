@@ -59,7 +59,7 @@ function TimerSetup() {
     if (!refreshToken) throw new Error('No refresh token found');
 
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/auth/refresh', { refreshToken });
+      const response = await axios.post('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/auth/refresh', { refreshToken });
       const newToken = response.data.accessToken;
       localStorage.setItem('accessToken', newToken);
       setAccessToken(newToken);
@@ -89,7 +89,7 @@ function TimerSetup() {
   // 타이머를 API로부터 가져오는 함수
   const fetchTimers = async () => {
     try {
-      const response = await fetchWithAuth('http://localhost:8080/api/v1/timer');
+      const response = await fetchWithAuth('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer');
       if (response.status === 200) {
         setTimers(response.data.data);
         if (response.data.data.length > 0) {
@@ -121,7 +121,7 @@ function TimerSetup() {
     };
 
     try {
-      const response = await fetchWithAuth('http://localhost:8080/api/v1/timer', {
+      const response = await fetchWithAuth('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer', {
         method: 'POST',
         data: requestData
       });
@@ -157,7 +157,7 @@ function TimerSetup() {
       const timerId = selectedTimer.timerId;
       if (timerId) {
         try {
-          const response = await fetchWithAuth(`http://localhost:8080/api/v1/timer/${timerId}`);
+          const response = await fetchWithAuth(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/${timerId}`);
           if (response.status === 200) {
             const settings = response.data.data;
             setSelectedInterval({ value: settings.cycle.toString(), label: `${settings.cycle}시간` });
@@ -192,7 +192,7 @@ function TimerSetup() {
     const timerName = newTimerName.trim() || '새로운 타이머';
     if (selectedTimerIndex !== null) {
       try {
-        await fetchWithAuth('http://localhost:8080/api/v1/timer', {
+        await fetchWithAuth('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer', {
           method: 'POST',
           data: {
             deviceToken: getDeviceToken(),
@@ -241,7 +241,7 @@ function TimerSetup() {
       };
   
       try {
-        const response = await fetchWithAuth('http://localhost:8080/api/v1/timer', {
+        const response = await fetchWithAuth('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -258,7 +258,7 @@ function TimerSetup() {
   
           try {
             const stateResponse = await fetchWithAuth(
-              `http://localhost:8080/api/v1/timer/state/${newTimerId}?date=${date}&timerState=${timerState}&part=${part}`,
+              `https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/state/${newTimerId}?date=${date}&timerState=${timerState}&part=${part}`,
               {
                 method: 'POST',
                 headers: {
@@ -299,7 +299,7 @@ function TimerSetup() {
   
       try {
         const response = await fetchWithAuth(
-          `http://localhost:8080/api/v1/timer/state/${timerId}?date=${date}&timerState=${timerState}&part=${part}`,
+          `https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/state/${timerId}?date=${date}&timerState=${timerState}&part=${part}`,
           {
             method: 'POST',
             headers: {

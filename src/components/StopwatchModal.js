@@ -17,7 +17,7 @@ function StopwatchModal({ isOpen, onClose, partType, imgUrls, timerId }) {
         try {
             const accessToken = localStorage.getItem('accessToken');
             await axios.post(
-                `http://localhost:8080/api/v1/timer/state/${timerId}`,
+                `https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/state/${timerId}`,
                 {},
                 {
                     headers: {
@@ -39,7 +39,7 @@ function StopwatchModal({ isOpen, onClose, partType, imgUrls, timerId }) {
         try {
             const accessToken = localStorage.getItem('accessToken');
             await axios.post(
-                `http://localhost:8080/api/v1/timer/state/${timerId}`,
+                `https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/state/${timerId}`,
                 {},
                 {
                     headers: {

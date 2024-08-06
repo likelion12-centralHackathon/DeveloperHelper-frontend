@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../assets/styles/Mypage.css';
+import RatingStars from "../components/RatingStars";
 import moment from "moment";
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -27,6 +28,23 @@ function Mypage() {
     const [date, setDate] = useState(new Date());
     const [stretchingData, setStretchingData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentPart, setCurrentPart] = useState(null);
+    const [stretchingTimes, setStretchingTimes] = useState({
+        eye: 0,
+        neck: 0,
+        waist: 0,
+        leg: 0,
+        etc: 0
+    });
+    const [overallRating, setOverallRating] = useState(0);
+    const [partRatings, setPartRatings] = useState({
+        eye: 0,
+        neck: 0,
+        waist: 0,
+        leg: 0,
+        etc: 0
+    });
+    const [feedback, setFeedback] = useState('');
     const navigate = useNavigate();
 
     function getAccessToken() {
@@ -38,7 +56,7 @@ function Mypage() {
         if (!refreshToken) throw new Error('No refresh token found');
 
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/refresh', { refreshToken });
+            const response = await axios.post('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/auth/refresh', { refreshToken });
             const newToken = response.data.accessToken;
             localStorage.setItem('accessToken', newToken);
             setAccessToken(newToken);
@@ -66,7 +84,7 @@ function Mypage() {
 
     const fetchTimerhistory = async (date) => {
         try {
-            const response = await fetchWithAuth(`http://localhost:8080/api/v1/timer/search/${date}`);
+            const response = await fetchWithAuth(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/search/${date}`);
             if (response.status === 200) {
                 setTimerhistory(response.data.data || []);
                 setIsHistoryVisible(response.data.data.length === 0);
@@ -79,7 +97,7 @@ function Mypage() {
     const fetchStretchingData = async (date) => {
         try {
             console.log(`Fetching stretching data for date: ${date}`); // 추가된 로그
-            const response = await fetchWithAuth(`http://localhost:8080/api/v1/timer/static/${date}`);
+            const response = await fetchWithAuth(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/static/${date}`);
             if (response.status === 200) {
                 console.log('Stretching data fetched successfully:', response.data); // 추가된 로그
                 setStretchingData(response.data.data || []);
@@ -88,6 +106,59 @@ function Mypage() {
             console.error('Failed to fetch stretching data', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const fetchPartFeedback = async (part) => {
+        try {
+            const response = await fetchWithAuth(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/feedback/${part}`);
+            if (response.status === 200) {
+                const data = response.data;
+                setPartRatings(prev => ({
+                    ...prev,
+                    [part]: data.rating
+                }));
+                setFeedback(data.comment || '');
+            } else {
+                console.error('Failed to fetch feedback for part', part);
+            }
+        } catch (error) {
+            console.error('Failed to fetch part feedback', error);
+        }
+    };
+
+    const handleSave = async () => {
+        try {
+            const formattedDate = moment(date).format('YYYY-MM-DD');
+            const [year, month, day] = formattedDate.split('-').map(Number);
+
+            const response = await axios.post('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/satisfaction', {
+                rating: overallRating,
+                comment: feedback,
+                partType: currentPart ? currentPart.toUpperCase() : 'ALL',
+                year,
+                month,
+                day
+            });
+
+            if (response.status === 200) {
+                alert('피드백이 저장되었습니다!');
+                // Optional: clear feedback and rating if desired
+                setFeedback('');
+                setOverallRating(0);
+                setPartRatings({
+                    eye: 0,
+                    neck: 0,
+                    waist: 0,
+                    leg: 0,
+                    etc: 0
+                });
+            } else {
+                alert('피드백 저장 실패');
+            }
+        } catch (error) {
+            console.error('피드백 저장 실패:', error);
+            alert('피드백 저장 중 오류가 발생했습니다.');
         }
     };
 
@@ -112,7 +183,7 @@ function Mypage() {
                 const accessToken = localStorage.getItem('accessToken');
                 const userId = localStorage.getItem('userId');
 
-                const response = await axios.get(`http://localhost:8080/api/v1/users/info/${userId}`, {
+                const response = await axios.get(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/users/info/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
@@ -122,27 +193,17 @@ function Mypage() {
                 if (error.response && error.response.status === 403) {
                     try {
                         const refreshToken = localStorage.getItem('refreshToken');
-                        const refreshResponse = await axios.post('http://localhost:8080/api/v1/users/refresh', {}, {
-                            headers: {
-                                'Authorization': `Bearer ${refreshToken}`
-                            }
-                        });
-                        const newAccessToken = refreshResponse.data.data;
-                        localStorage.setItem('accessToken', newAccessToken);
-                        const userId = localStorage.getItem('userId');
-                        const retryResponse = await axios.get(`http://localhost:8080/api/v1/users/info/${userId}`, {
-                            headers: {
-                                'Authorization': `Bearer ${newAccessToken}`
-                            }
-                        });
-                        setNickname(retryResponse.data.data.nickname);
+                        const refreshResponse = await axios.post('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/auth/refresh', { refreshToken });
+                        const newToken = refreshResponse.data.accessToken;
+                        localStorage.setItem('accessToken', newToken);
+                        setAccessToken(newToken);
                     } catch (refreshError) {
-                        console.error('리프레시 토큰 갱신 실패:', refreshError);
+                        console.error('Refresh token error:', refreshError);
                         alert('로그인이 필요합니다.');
                         navigate('/login');
                     }
                 } else {
-                    console.error('사용자 정보를 불러오는 데 실패했습니다:', error);
+                    console.error('Failed to fetch nickname:', error);
                 }
             }
         };
@@ -155,6 +216,30 @@ function Mypage() {
         return part ? part.label : 'Unknown';
     };
 
+    const handlePartButtonClick = (part) => {
+        setCurrentPart(part);
+        if (part) {
+            fetchPartFeedback(part);
+        } else {
+            setFeedback('');
+            setPartRatings(prev => ({
+                ...prev,
+                eye: 0,
+                neck: 0,
+                waist: 0,
+                leg: 0,
+                etc: 0
+            }));
+        }
+    };
+
+    const handlePartRatingChange = (part, rating) => {
+        setPartRatings(prev => ({
+            ...prev,
+            [part]: rating
+        }));
+    };
+
     const pieChartData = {
         labels: stretchingData.map(data => getBodyPartLabel(data.partType)),
         datasets: [
@@ -165,17 +250,6 @@ function Mypage() {
             }
         ]
     };
-    // 새로운 코드를 추가하여 stretchingTimes 변수를 정의하고 사용합니다.
-    const stretchingTimes = {
-        eye: 0,
-        neck: 0,
-        waist: 0,
-        leg: 0,
-        etc: 0
-    };
-    useEffect(() => {
-        console.log('Updated pie chart data:', pieChartData); // 추가된 로그
-    }, [stretchingData]);
 
     return (
         <div className="mypage-container">
@@ -206,9 +280,9 @@ function Mypage() {
                                         {timer.parts && timer.parts.length > 0 && timer.parts.map((part, partIndex) => (
                                             <div key={partIndex} className='progress-stretchCycle'>
                                                 <div className='progress-cycleNum'>{partIndex + 1}</div>
-                                                <div className="progress-bodypart-container">
+                                                <div className="bodyparttype-container">
                                                     {part.partIds && part.partIds.length > 0 && part.partIds.map((partId, idIndex) => (
-                                                        <div key={idIndex} className='progress-bodypart'>{getBodyPartLabel(partId)}</div>
+                                                        <div key={idIndex} className='bodyparttype'>{getBodyPartLabel(partId)}</div>
                                                     ))}
                                                 </div>
                                             </div>
@@ -222,41 +296,66 @@ function Mypage() {
                     )}
                 </div>
                 <div className="progress-pie-chart-container">
-                <div>{loading ? (
-                    <p>데이터 로딩 중...</p>
-                ) : (
-                    pieChartData.labels.length > 0 ? (
-                        <Pie data={pieChartData} />
+                    <div>{loading ? (
+                        <p>데이터 로딩 중...</p>
                     ) : (
-                        <p>해당 날짜의 데이터가 없습니다.</p>
-                    )
-                )}
-                <div>
-                    <p>눈 : {stretchingTimes.eye}분</p>
-                    <p>목 : {stretchingTimes.neck}분</p>
-                    <p>허리 : {stretchingTimes.waist}분</p>
-                    <p>다리 : {stretchingTimes.leg}분</p>
-                    <p>기타 : {stretchingTimes.etc}분</p>
-                </div>
-                </div>
+                        pieChartData.labels.length > 0 ? (
+                            <Pie data={pieChartData} />
+                        ) : (
+                            <p>해당 날짜의 데이터가 없습니다.</p>
+                        )
+                    )}
+                    </div>
+                    <div>
+                        <p>눈 : {stretchingTimes.eye}분</p>
+                        <p>목 : {stretchingTimes.neck}분</p>
+                        <p>허리 : {stretchingTimes.waist}분</p>
+                        <p>다리 : {stretchingTimes.leg}분</p>
+                        <p>기타 : {stretchingTimes.etc}분</p>
+                    </div>
                 </div>
                 <div className="satisfaction-container">
                     <h3>신체부위별 만족도</h3>
                     <div className="satisfactionBtn-container">
-                        <button className="satisfactionBtn">전체</button>
-                        <button className="satisfactionBtn">눈</button>
-                        <button className="satisfactionBtn">목</button>
-                        <button className="satisfactionBtn">허리</button>
-                        <button className="satisfactionBtn">기타</button>
+                        {bodyParts.map(part => (
+                            <button
+                                key={part.id}
+                                className="satisfactionBtn"
+                                onClick={() => handlePartButtonClick(part.value)}
+                            >
+                                {part.label}
+                            </button>
+                        ))}
+                        <button className="satisfactionBtn" onClick={() => handlePartButtonClick(null)}>전체</button>
                     </div>
-                    <div className="rating">
-                        <div>
-                            <div> 전체</div>
-                            <div>★★★★☆</div>
-                        </div>
+                    <div className="progress-bodypart">
+                        {currentPart === null ? (
+                            <div className="progress-bodypart-container">
+                                <div>전체</div>
+                                <RatingStars
+                                    rating={overallRating}
+                                    onRatingChange={setOverallRating}
+                                />
+                            </div>
+                        ) : (
+                            <div className="progress-bodypart-container">
+                                <div>{getBodyPartLabel(bodyParts.find(part => part.value === currentPart)?.id)}</div>
+                                <RatingStars
+                                    rating={partRatings[currentPart]}
+                                    onRatingChange={(rating) => handlePartRatingChange(currentPart, rating)}
+                                />
+                            </div>
+                        )}
                     </div>
-                    <textarea className='satisfaction-content'placeholder="잘한점과 못한점을 적어주세요." />
-                    <button className="satisfaction-saveBtn">저장</button>
+                    <textarea
+                        className='satisfaction-content'
+                        placeholder="잘한점과 못한점을 적어주세요."
+                        value={feedback}
+                        onChange={(e) => setFeedback(e.target.value)}
+                    />
+                    <div className="satisfaction-saveBtn-container">
+                        <button className="satisfaction-saveBtn" onClick={handleSave}>저장</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -264,7 +363,3 @@ function Mypage() {
 }
 
 export default Mypage;
-
-
-
-

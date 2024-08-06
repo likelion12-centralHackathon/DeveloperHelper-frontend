@@ -66,7 +66,7 @@ function TimerRunning() {
                 const accessToken = localStorage.getItem('accessToken');
                 const userId = localStorage.getItem('userId');
 
-                const response = await axios.get(`http://localhost:8080/api/v1/users/info/${userId}`, {
+                const response = await axios.get(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/users/info/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
@@ -76,7 +76,7 @@ function TimerRunning() {
                 if (error.response && error.response.status === 403) {
                     try {
                         const refreshToken = localStorage.getItem('refreshToken');
-                        const refreshResponse = await axios.post('http://localhost:8080/api/v1/users/refresh', {}, {
+                        const refreshResponse = await axios.post('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/users/refresh', {}, {
                             headers: {
                                 'Authorization': `Bearer ${refreshToken}`
                             }
@@ -84,7 +84,7 @@ function TimerRunning() {
                         const newAccessToken = refreshResponse.data.data;
                         localStorage.setItem('accessToken', newAccessToken);
                         const userId = localStorage.getItem('userId');
-                        const retryResponse = await axios.get(`http://localhost:8080/api/v1/users/info/${userId}`, {
+                        const retryResponse = await axios.get(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/users/info/${userId}`, {
                             headers: {
                                 'Authorization': `Bearer ${newAccessToken}`
                             }
@@ -109,7 +109,7 @@ function TimerRunning() {
             if (timerId) {
                 try {
                     const accessToken = localStorage.getItem('accessToken');
-                    const response = await axios.get(`http://localhost:8080/api/v1/timer/${timerId}`, {
+                    const response = await axios.get(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/${timerId}`, {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
                         }
@@ -131,7 +131,7 @@ const updateTimerState = async (timerId, timerState, partType = -1) => {
 
     try {
         const response = await axios.post(
-            `http://localhost:8080/api/v1/timer/state/${timerId}?date=${date}&timerState=${timerState}&part=${partType}`,
+            `https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/timer/state/${timerId}?date=${date}&timerState=${timerState}&part=${partType}`,
             {},
             {
                 headers: {

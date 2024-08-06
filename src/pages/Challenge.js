@@ -48,7 +48,7 @@ function Challenge() {
         }
     
         try {
-            const response = await axios.get('http://localhost:8080/api/v1/challengeList', {
+            const response = await axios.get('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/challengeList', {
                 params: {
                     category: category === "ALL" ? "ALL" : category
                 },

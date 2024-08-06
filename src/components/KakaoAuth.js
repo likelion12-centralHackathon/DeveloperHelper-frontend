@@ -14,7 +14,7 @@ function KakaoAuth() {
             if (code) {
                 try {
                     // 백엔드로 인증 코드 전송하여 JWT 받기
-                    const response = await axios.get(`http://localhost:8080/api/v1/users/login/kakao?code=${code}`, {
+                    const response = await axios.get(`https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/users/login/kakao?code=${code}`, {
                         withCredentials: true
                     });
                     console.log('Backend response:', response);
@@ -31,7 +31,7 @@ function KakaoAuth() {
                         localStorage.setItem('refreshToken', refreshToken);
 
                         // 사용자 정보를 요청하여 id를 가져옴
-                        const userInfoResponse = await axios.get('http://localhost:8080/api/v1/users/info', {
+                        const userInfoResponse = await axios.get('https://port-0-backend-lzifzlxv44c22816.sel4.cloudtype.app/api/v1/users/info', {
                             headers: {
                                 'Authorization': `Bearer ${accessToken}`
                             }

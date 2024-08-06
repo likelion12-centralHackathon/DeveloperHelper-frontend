@@ -16,7 +16,7 @@ import KakaoAuth from './components/KakaoAuth';
 import AdditionalInfo from './pages/AdditionalInfo';
 import './assets/styles/App.css'; 
 
-import { messaging } from './firebase-config';
+/*import { messaging } from './firebase-config';
 
 function requestPermission() {
   console.log('알림 권한 요청 중...');
@@ -64,11 +64,11 @@ function saveTokenToLocalStorage(token) {
   .catch(error => console.error('서버에 토큰 저장 중 에러 발생', error));
 }*/
 
-function App() {
-  useEffect(() => {
+  function App() {
+  /*useEffect(() => {
     console.log('Firebase Messaging 객체:', messaging);
     requestPermission();
-  }, []);
+  }, []);*/
 
   return (
     <Router>
