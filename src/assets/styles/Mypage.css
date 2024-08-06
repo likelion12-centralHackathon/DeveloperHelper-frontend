@@ -10,7 +10,7 @@
     margin-top: 110px;
     margin-bottom: 20px;
     width: 520px;
-    height: auto;
+    height: 550px;
     flex-shrink: 0;
     border-radius: 33.214px;
     border: 1.661px solid rgba(0, 0, 0, 0.50);
@@ -98,7 +98,7 @@
 }
 
 .react-calendar__tile--active {
-    background: #ffa500;
+    background: #5E7DEC;
     color: white;
 }
 
@@ -116,8 +116,19 @@
 .progressTitle-name {
     font-weight: 700;
 }
+.progress-summary-container {
+    width: 700px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    overflow-x: auto;
+}
+
+
 .progress-summary {
-    margin-top: 100px;
+    margin-top: 30px;
     width: 500px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -179,4 +190,32 @@
     font-style: normal;
     font-weight: 400;
     line-height: 133.8%; /* 24.084px */
+}
+.satisfaction-container {
+    margin-top: 50px;
+    border-radius: 30px;
+    background: #FFF;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    width: 675px;
+    height: 534.511px;
+    flex-shrink: 0;
+}
+.satisfaction-container h3 {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 133.8%;
+}
+.satisfactionBtn-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.satisfactionBtn{
+    width: 73px;
+height: 38px;
+    border-radius: 10px;
+
 }

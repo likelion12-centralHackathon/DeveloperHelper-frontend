@@ -1,0 +1,70 @@
+.stopwatchModal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.50);
+    z-index: 999; 
+}
+.stopwatchModal-container {
+    width: 797px;
+    min-height: 826px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+}
+.stopwatchMdeal-header {
+    width: 797px;
+    height: 115px;
+    border-radius: 20px 20px 0px 0px;
+    background: #CDD7F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stopwatchMdeal-header h2 {
+    color: #446AF2;
+    text-align: center;
+    font-family: "BMHANNAPro";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 133.8%; /* 48.168px */
+}
+.stopwatchModal-stretching-container {
+    width: 100%;
+    height: auto;
+}
+
+.stopwatchBtn-container {
+    width: 100%;
+    height: auto;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stopwatchBtn {
+    width: 172px;
+    height: 56px;
+    padding: 5px 20px;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #5E7DEC;
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 133.8%; /* 32.112px */
+}

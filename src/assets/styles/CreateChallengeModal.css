@@ -235,14 +235,3 @@
     cursor: pointer;
 }
 
-.detailTitle + .detailInput {
-    display: block;
-}
-
-.createChallengeDetail p {
-    display: none;
-}
-
-.detailTitle + .detailInput + .createChallengeDetail p {
-    display: block;
-}
